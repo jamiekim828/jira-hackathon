@@ -1,6 +1,8 @@
-import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+// MUI
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
+// type
 type Inputs = {
   email: string;
   password: string;
@@ -35,9 +37,21 @@ export default function LogIn() {
           >
             <input
               type='text'
-              {...register('email', { required: true })}
+              {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
               placeholder='Email'
             />
+            {errors.email && errors.email.type === 'required' && (
+              <p>
+                <WarningAmberIcon color='error' sx={{ fontSize: '14px' }} />
+                Email is required
+              </p>
+            )}
+            {errors.email && errors.email.type === 'pattern' && (
+              <p>
+                <WarningAmberIcon color='error' sx={{ fontSize: '14px' }} />
+                Please check if the email is correct
+              </p>
+            )}
             <input
               type='text'
               {...register('password', { required: true })}

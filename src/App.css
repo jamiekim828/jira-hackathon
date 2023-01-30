@@ -44,6 +44,14 @@
   cursor: pointer;
 }
 
+#form > p {
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  font-size: 12px;
+  color: rgb(192, 14, 14);
+}
+
 .flex {
   display: flex;
   gap: 1em;
