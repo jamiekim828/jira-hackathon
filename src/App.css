@@ -26,7 +26,8 @@
 }
 
 #form > input,
-.register-btn {
+.register-btn,
+.signin-btn {
   border: 1px solid #e9ecef;
   padding: 0.9em 1em;
 }
@@ -35,7 +36,8 @@
   outline: none;
 }
 
-#form > .register-btn {
+#form > .register-btn,
+.signin-btn {
   background-color: #003049;
   color: #e9ecef;
   font-size: 1em;
