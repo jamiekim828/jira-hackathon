@@ -4,20 +4,21 @@ import "./App.css";
 import CreateProjects from "./pages/CreateProjects";
 import ProjectDetail from "./components/ProjectDetail";
 import Main from "./pages/Main";
-import ProjectsPage from "./pages/ProjectsPage";
+import ProjectsList from "./components/ProjectsList";
 import Login from "./pages/LogIn";
 import SideBar from "./components/SideBar";
 
 function App() {
+
   return (
     <div className="App">
       <SideBar />
       <Routes>
-        <Route path="/" element={<Main />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/projects" element={<ProjectsPage />}></Route>
-        <Route path="/projects/:id" element={<ProjectDetail />}></Route>
-        <Route path="/create" element={<CreateProjects />}></Route>
+        <Route path='/' element={<Main />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/projects' element={<ProjectsList />}></Route>
+        <Route path='/projects/:projectId' element={<ProjectDetail />}></Route>
+        <Route path='/create' element={<CreateProjects />}></Route>
       </Routes>
     </div>
   );

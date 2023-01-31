@@ -1,11 +1,24 @@
 import { Box, Divider, List, ListItem, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../redux/store";
 
-import { Project } from "../types/ProjectTypes";
-
-const ProjectItem = ({ project }: any) => {
+export interface Project {
+  createdAt: string;
+  projectName: string;
+  task: any[];
+  creator: string;
+  projectType: any[];
+  releaseDate: number;
+  id: string;
+  status: string[];
+}
+type Prop = {
+  project: Project;
+};
+const ProjectItem = ({ project }: Prop) => {
   return (
     <ListItem sx={{ flexBasis: "30%", hight: "600px", m: "0"}}>
       <Link
@@ -60,11 +73,9 @@ const ProjectItem = ({ project }: any) => {
   );
 };
 
-type Props = {
-  projects: Project[];
-};
 
-export default function ProjectsList({ projects }: Props) {
+export default function ProjectsList() {
+  const projects: Project[]= useSelector((state:RootState)=> state.projectReducer)
   const notStartedProjects =
     projects.filter((project) => project.status[0] === "created") || [];
   const inProgressProjects =
