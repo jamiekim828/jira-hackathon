@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Editor } from '@tinymce/tinymce-react';
 // MUI
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 import { AppDispatch, RootState } from '../redux/store';
 import { fetchAllUsers } from '../redux/userReducer';
 import Dropdown from './Dropdown';
+import { display } from '@mui/system';
 
 export default function CreateProjects() {
   const users = useSelector((state: RootState) => state.userReducer);
@@ -31,20 +34,29 @@ export default function CreateProjects() {
           <h1>Create Project</h1>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <TextField
-            id='outlined-multiline-flexible'
-            label='Project Name'
-            multiline
-            maxRows={4}
-          />
-          <TextField
-            id='outlined-multiline-static'
-            label='Project Description'
-            multiline
-            rows={4}
-          />
+          <div style={{ display: 'flex' }}>
+            <TextField
+              id='outlined-multiline-flexible'
+              label='Project Name'
+              multiline
+              maxRows={4}
+              className='input-field'
+              sx={{ width: '600px' }}
+            />
+            <Dropdown users={users} />
+          </div>
+          <Editor />
         </div>
-        <Dropdown users={users} />
+        <Button
+          variant='contained'
+          sx={{
+            marginTop: '10px',
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
+        >
+          ADD
+        </Button>
       </div>
     </Box>
   );

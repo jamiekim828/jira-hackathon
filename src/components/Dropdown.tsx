@@ -14,7 +14,6 @@ export default function Dropdown({ users }: PropType) {
       disablePortal
       id='combo-box-demo'
       options={userName}
-      sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label='Users' />}
     />
   );
