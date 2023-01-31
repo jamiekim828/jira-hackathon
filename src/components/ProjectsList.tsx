@@ -2,15 +2,7 @@ import { Box, Divider, List, ListItem, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 
-interface Project {
-  createdAt: string;
-  projectName: string;
-  task: any[];
-  creator: string;
-  projectType: any[];
-  releaseDate: number;
-  id: string;
-}
+import { Project} from "../types/ProjectTypes";
 
 const ProjectItem = ({ project }: any) => {
   return (
@@ -46,10 +38,10 @@ const ProjectItem = ({ project }: any) => {
             }}
           />
           <Box sx={{ p: "1rem" }}>
-            <Typography variant="h1" color="#003049" fontSize="1.3rem">
+            <Typography variant="h2" color="#003049" fontSize="1.3rem">
               {project.projectName}
             </Typography>
-            <Typography variant="h2" fontSize="1.2rem" marginBottom="1rem">
+            <Typography variant="h3" fontSize="1.2rem" marginBottom="1rem">
               {/* !!! To replace the PROJECT TYPE */}
               Project Type
             </Typography>

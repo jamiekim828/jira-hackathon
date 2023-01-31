@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import CreateProjects from './pages/CreateProjects';
 import ProjectDetail from './components/ProjectDetail';
 import Main from './pages/Main';
-import ProjectsList from './pages/ProjectsList';
+import ProjectsPage from "./pages/ProjectsPage";
 import DashBoard from './components/DashBoard';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <DashBoard />
       <Routes>
         <Route path="/" element={<Main />}></Route>
-        <Route path="/projects" element={<ProjectsList />}></Route>
+        <Route path="/projects" element={<ProjectsPage />}></Route>
         <Route path="/projects/:id" element={<ProjectDetail />}></Route>
         <Route path="/create" element={<CreateProjects />}></Route>
       </Routes>
