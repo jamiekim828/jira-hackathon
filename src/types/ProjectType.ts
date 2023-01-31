@@ -3,4 +3,5 @@ export interface ProjectType {
     name: string
     creator: string
     members: string[]
+    description: string
 }
