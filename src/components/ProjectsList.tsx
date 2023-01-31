@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/reduxHook";
 import { useAppDispatch } from "../hooks/reduxHook";
 import { fetchAllProjects } from "../redux/projectReducer";
+import { deleteProject } from "../redux/projectReducer";
+import { deleteItem } from "../redux/projectReducer";
 
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
@@ -13,6 +15,11 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import { Project } from "../types/ProjectTypes";
 
 const ProjectItem = ({ project }: any) => {
+  const dispatch = useAppDispatch();
+  const deleteFromProject = () => {
+    dispatch(deleteProject(project.id));
+    dispatch(deleteItem(project.id));
+  };
   return (
     <ListItem sx={{ flexBasis: "30%", hight: "600px", m: "0" }}>
       <Link
@@ -63,10 +70,9 @@ const ProjectItem = ({ project }: any) => {
           </Box>
         </Box>
       </Link>
-      <Box>
-        <DeleteOutlineOutlinedIcon />
-        {/* <ModeEditOutlinedIcon /> */}
-      </Box>
+
+      <DeleteOutlineOutlinedIcon onClick={deleteFromProject} />
+      {/* <ModeEditOutlinedIcon /> */}
     </ListItem>
   );
 };

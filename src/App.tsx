@@ -4,7 +4,9 @@ import './App.css';
 import CreateProjectsPage from './pages/CreateProjectPage';
 import ProjectDetail from './components/ProjectDetail';
 import Main from './pages/Main';
-import ProjectsList from './pages/ProjectsList';
+// import ProjectsList from './pages/ProjectsList';
+import ProjectsList from './components/ProjectsList';
+
 import Login from './pages/LogIn';
 import SideBar from './components/SideBar';
 
@@ -15,7 +17,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />}></Route>
         <Route path='/login' element={<Login />}></Route>
-        <Route path='/projects' element={<ProjectsList/>}></Route>
+        <Route path='/projects' element={<ProjectsList projects={[]}/>}></Route>
         <Route path='/projects/:projectId' element={<ProjectDetail />}></Route>
         <Route path='/create' element={<CreateProjectsPage />}></Route>
       </Routes>
