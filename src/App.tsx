@@ -5,13 +5,13 @@ import CreateProjects from './pages/CreateProjects';
 import ProjectDetail from './components/ProjectDetail';
 import Main from './pages/Main';
 import ProjectsList from './pages/ProjectsList';
-import DashBoard from './components/DashBoard';
 import Login from './pages/LogIn';
+import SideBar from './components/SideBar';
 
 function App() {
   return (
     <div className='App'>
-      <DashBoard />
+      <SideBar />
       <Routes>
         <Route path='/' element={<Main />}></Route>
         <Route path='/login' element={<Login />}></Route>
