@@ -10,6 +10,7 @@ import { AppDispatch, RootState } from '../redux/store';
 import { fetchAllUsers } from '../redux/userReducer';
 import Dropdown from './Dropdown';
 import { projectReducer } from '../redux/projectReducer';
+import { useNavigate } from 'react-router-dom';
 
 type NewProject = {
   id: number;
@@ -45,6 +46,7 @@ export default function CreateProjects() {
     description: '',
   });
 
+  const navigate = useNavigate();
   const addHandler = () => {
     const updatedValue = {
       id: 1,
@@ -54,6 +56,7 @@ export default function CreateProjects() {
       description: description,
     };
     setNewProject(updatedValue);
+    navigate('/projects');
   };
 
   // new project
