@@ -17,7 +17,7 @@ const ProjectItem = ({ project }: any) => {
     <ListItem sx={{ flexBasis: "30%", hight: "600px", m: "1rem" }}>
       <Link
         style={{ color: "inherit", textDecoration: "none" }}
-        to={`projects/${project.id}`}
+        to={`/projects/${project.id}`}
       >
         <Box
           style={{
@@ -46,10 +46,10 @@ const ProjectItem = ({ project }: any) => {
             }}
           />
           <Box sx={{ p: "1rem" }}>
-            <Typography color="#003049" fontSize="1.3rem">
+            <Typography variant="h1" color="#003049" fontSize="1.3rem">
               {project.projectName}
             </Typography>
-            <Typography fontSize="1.2rem" marginBottom="1rem">
+            <Typography variant="h2" fontSize="1.2rem" marginBottom="1rem">
               {/* !!! To replace the PROJECT TYPE */}
               Project Type
             </Typography>
