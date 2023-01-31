@@ -2,7 +2,7 @@ import { Box, Divider, List, ListItem, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 
-interface Project {
+export interface Project {
   createdAt: string;
   projectName: string;
   task: any[];

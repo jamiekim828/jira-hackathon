@@ -1,9 +1,7 @@
-import { TaskType } from "./TaskType"
-export interface ProjectType {
+export interface TaskType {
     id: number
     name: string
     creator: string
     members: string[]
-    tasks: TaskType[]
     description: string
 }
