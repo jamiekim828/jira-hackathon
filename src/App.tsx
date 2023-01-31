@@ -8,13 +8,13 @@ import DashBoard from './components/DashBoard';
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <DashBoard />
       <Routes>
-        <Route path='/' element={<Main />}></Route>
-        <Route path='/projects' element={<ProjectsList />}></Route>
-        <Route path='/products/:id' element={<ProjectDetail />}></Route>
-        <Route path='/create' element={<CreateProjects />}></Route>
+        <Route path="/" element={<Main />}></Route>
+        <Route path="/projects" element={<ProjectsList />}></Route>
+        <Route path="/projects/:id" element={<ProjectDetail />}></Route>
+        <Route path="/create" element={<CreateProjects />}></Route>
       </Routes>
     </div>
   );
