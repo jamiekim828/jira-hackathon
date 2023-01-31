@@ -1,19 +1,21 @@
-import { Box, Typography } from "@mui/material";
+import { AddCircleOutlineOutlined } from "@mui/icons-material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
 import ProjectList from "../components/ProjectsList";
-import {Project} from "../types/ProjectTypes";
+import { Project } from "../types/ProjectTypes";
 
 // EXAMPLE of response from backend
-// const projectsList: Project[] =[]
+// to check if the data is absent const projectsList: Project[] =[]
 const projectsList: Project[] = [
   {
     projectName: "Kirk Jones",
     creator: "creator 1",
-    projectType: [],
+    projectType: ["Frontend "],
     createdAt: "2023-01-31T04:28:01.272Z",
     releaseDate: "2023-11-28T03:36:57.695Z",
     id: "1",
+    status: ["created"],
     task: [
       {
         name: "name 1",
@@ -24,6 +26,7 @@ const projectsList: Project[] = [
         dueDate: "2023-05-09T03:48:55.352Z",
         id: "1",
         projectId: "1",
+        status: ["inProgress"],
       },
       {
         name: "name 27",
@@ -34,16 +37,18 @@ const projectsList: Project[] = [
         dueDate: "2023-12-21T05:00:10.752Z",
         id: "27",
         projectId: "1",
+        status: ["finished"],
       },
     ],
   },
   {
     projectName: "Amanda Nitzsche",
     creator: "creator 2",
-    projectType: [],
+    projectType: ["AWS"],
     createdAt: "2023-01-30T22:14:56.099Z",
     releaseDate: "2023-10-23T05:10:13.334Z",
     id: "2",
+    status: ["finished"],
     task: [
       {
         name: "name 2",
@@ -54,6 +59,7 @@ const projectsList: Project[] = [
         dueDate: "2023-11-02T08:22:34.634Z",
         id: "2",
         projectId: "2",
+        status: ["finished"],
       },
       {
         name: "name 28",
@@ -64,16 +70,18 @@ const projectsList: Project[] = [
         dueDate: "2023-05-19T07:39:34.890Z",
         id: "28",
         projectId: "2",
+        status: ["finished"],
       },
     ],
   },
   {
     projectName: "Steven Grady",
     creator: "creator 3",
-    projectType: [],
+    projectType: ["Backend"],
     createdAt: "2023-01-30T21:03:16.912Z",
     releaseDate: "2023-10-20T20:06:57.170Z",
     id: "3",
+    status: ["finished"],
     task: [
       {
         name: "name 3",
@@ -84,6 +92,7 @@ const projectsList: Project[] = [
         dueDate: "2023-06-08T05:40:14.738Z",
         id: "3",
         projectId: "3",
+        status: ["inProgress"],
       },
       {
         name: "name 29",
@@ -94,6 +103,7 @@ const projectsList: Project[] = [
         dueDate: "2023-02-08T11:32:26.722Z",
         id: "29",
         projectId: "3",
+        status: ["inProgress"],
       },
     ],
   },
@@ -101,16 +111,28 @@ const projectsList: Project[] = [
 
 export default function ProjectsPage() {
   return (
-    <Box width="100%" height="100%">
-      <Box margin="0 auto" justifyContent="center" alignItems="center">
+    <Box width="100%" height="100%" padding="1rem">
+      <Box
+        style={{
+          minWidth: "100%",
+          paddingBottom: "2rem",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <Typography
           variant="h1"
           fontWeight="bold"
           fontSize="2rem"
           color="#bec8d1"
         >
-          Project List
+          PROJECTS LIST
         </Typography>
+        <Button variant="text" onClick={() => console.log("createNewProject")}>
+          <AddCircleOutlineOutlined
+            sx={{ color: "#003049", fontSize: "1.8rem" }}
+          />
+        </Button>
       </Box>
       {projectsList.length > 0 ? (
         <ProjectList projects={projectsList} />
