@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />}></Route>
         <Route path='/login' element={<Login />}></Route>
-        <Route path='/projects' element={<ProjectsList projects={[]}/>}></Route>
+        <Route path='/projects' element={<ProjectsList projects={[]} />}></Route>
         <Route path='/projects/:projectId' element={<ProjectDetail />}></Route>
         <Route path='/create' element={<CreateProjectsPage />}></Route>
       </Routes>
