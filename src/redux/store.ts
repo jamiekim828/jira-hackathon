@@ -1,7 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
+import { projectReducer } from "./projectReducer";
+import { userReducer } from "./userReducer";
 
 const store = configureStore({
-  reducer: {},
+  reducer: { projectReducer, userReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
 });
