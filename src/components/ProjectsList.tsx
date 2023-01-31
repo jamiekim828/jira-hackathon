@@ -1,33 +1,27 @@
 import { Box, Divider, List, ListItem, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import React from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { RootState } from "../redux/store";
 
-export interface Project {
-  createdAt: string;
-  projectName: string;
-  task: any[];
-  creator: string;
-  projectType: any[];
-  releaseDate: number;
-  id: string;
-  status: string[];
-}
-type Prop = {
-  project: Project;
-};
-const ProjectItem = ({ project }: Prop) => {
+import { useAppSelector } from "../hooks/reduxHook";
+import { useAppDispatch } from "../hooks/reduxHook";
+import { fetchAllProjects } from "../redux/projectReducer";
+
+import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+
+import { Project } from "../types/ProjectTypes";
+
+const ProjectItem = ({ project }: any) => {
   return (
-    <ListItem sx={{ flexBasis: "30%", hight: "600px", m: "0"}}>
+    <ListItem sx={{ flexBasis: "30%", hight: "600px", m: "0" }}>
       <Link
         style={{ color: "inherit", textDecoration: "none" }}
         to={`/projects/${project.id}`}
       >
         <Box
           style={{
-            backgroundColor:"white" ,
+            backgroundColor: "white",
             boxShadow:
               "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
           }}
@@ -69,19 +63,32 @@ const ProjectItem = ({ project }: Prop) => {
           </Box>
         </Box>
       </Link>
+      <Box>
+        <DeleteOutlineOutlinedIcon />
+        {/* <ModeEditOutlinedIcon /> */}
+      </Box>
     </ListItem>
   );
 };
 
+type Props = {
+  projects: Project[];
+};
 
-export default function ProjectsList() {
-  const projects: Project[]= useSelector((state:RootState)=> state.projectReducer)
+export default function ProjectsList({ projects }: Props) {
   const notStartedProjects =
     projects.filter((project) => project.status[0] === "created") || [];
   const inProgressProjects =
     projects.filter((project) => project.status[0] === "inProgress") || [];
   const finishedProjects =
     projects.filter((project) => project.status[0] === "finished") || [];
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllProjects());
+  }, []);
+  const projectList = useAppSelector((item) => item.projectReducer);
 
   return (
     <Grid container spacing={3}>
@@ -104,13 +111,14 @@ export default function ProjectsList() {
             TO DO
           </Typography>
           <List>
-            {notStartedProjects.length > 0 &&
-              notStartedProjects.map((project: Project) => (
+            {projectList.length > 0 &&
+              projectList.map((project) => (
                 <ProjectItem key={project.id} project={project} />
               ))}
           </List>
         </Box>
       </Grid>
+
       <Grid
         item
         xs={4}
@@ -142,6 +150,7 @@ export default function ProjectsList() {
           </List>
         </Box>
       </Grid>
+
       <Grid
         item
         xs={4}
