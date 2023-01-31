@@ -4,10 +4,7 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 // image file
 import image from "../assets/background.jpg.webp";
 
-//this is for testing, will delete later
-import { useAppDispatch } from "../hooks/reduxHook";
-import { fetchAllProjects } from "../redux/projectReducer";
-import { fetchAllUsers } from "../redux/userReducer";
+
 
 type Inputs = {
   fullName: string;
@@ -26,19 +23,12 @@ export default function Register() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  ////this is for testing api, will delete later
-  const dispatch = useAppDispatch();
-  const getProjects = () => {
-    dispatch(fetchAllUsers());
-  };
-
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   console.log(watch("email"));
 
   return (
     <section>
-      <button onClick={getProjects}>test api</button>
       <div className="register">
         <div className="col-1">
           <img src={image} alt="background-img" />
