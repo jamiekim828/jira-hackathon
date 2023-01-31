@@ -152,3 +152,44 @@ main {
 .space-toggle {
   padding-left: calc(var(--nav-width)+ 1rem);
 }
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-container {
+  position: relative;
+  width: 250px;
+}
+
+.dropdown-container input {
+  width: 100%;
+  padding: 0;
+  border-width: 1px;
+  height: 36px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.option {
+  height: 36px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.option:hover {
+  background-color: lightgray;
+}
+
+.dropdown {
+  border: 1px solid black;
+  border-bottom: none;
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+}

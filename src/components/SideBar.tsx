@@ -45,7 +45,7 @@ export default function SideBar() {
                 Projects
               </Link>
               <Link
-                to='/projects'
+                to='/create'
                 className='nav-logo'
                 style={{
                   textDecoration: 'none',
