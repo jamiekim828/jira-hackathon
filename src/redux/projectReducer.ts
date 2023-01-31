@@ -24,8 +24,9 @@ export const fetchAllProjects = createAsyncThunk(
 
 export const deleteProject = createAsyncThunk(
   "deleteProject",
-  async (projectId: number) => {
+  async (projectId: any) => {
     try {
+      console.log(projectId);
       const response = await axios.delete(
         `https://63d7d9b1afbba6b7c945d817.mockapi.io/api/v1/test1/${projectId}`
       );
@@ -62,7 +63,7 @@ const ProjectSlice = createSlice({
   name: "ProjectSlice",
   initialState,
   reducers: {
-    delete: (state: ProjectType[], action: PayloadAction<number>) => {
+    deleteItem: (state: ProjectType[], action: any) => {
       if (action.payload) {
         return state.filter((item) => item.id !== action.payload);
       }
@@ -99,3 +100,4 @@ const ProjectSlice = createSlice({
 // and get the project list
 
 export const projectReducer = ProjectSlice.reducer;
+export const { deleteItem } = ProjectSlice.actions;
