@@ -68,9 +68,6 @@ const ProjectSlice = createSlice({
         return state.filter((item) => item.id !== action.payload);
       }
     },
-    add: (state, action) => {
-      state.push(action.payload);
-    },
   },
   extraReducers: (build) => {
     build
