@@ -12,7 +12,7 @@ export interface Project {
 export interface Task {
   name: string;
   description: string;
-  doerId: number;
+  doerId: string[]|number;
   comments: string[];
   createdAt: string;
   dueDate: string;

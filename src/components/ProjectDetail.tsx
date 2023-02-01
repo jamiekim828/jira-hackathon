@@ -9,6 +9,9 @@ import { ProjectType } from "../types/ProjectType";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import Button from "@mui/material/Button";
+
+import TasksList from "./TasksList";
+
 import fetchOneProject from "../redux/projectDetailReducer";
 import { AppDispatch } from "../redux/store";
 
@@ -112,7 +115,12 @@ export default function ProjectDetail(){
       );
     }
     return (
+      <>
         <div>
+
+          {projectDetail.map((project) => {
+            return (
+              <div>
                 <Card sx={{ mxWidth: 345}}>
                   <CardHeader
                       title={project.projectName}
@@ -128,24 +136,38 @@ export default function ProjectDetail(){
                     </Typography>
                   </CardContent>
                   <CardActions>
+
+                    <CardActions>
+                      {project.tasks.map((task) => {
+                        return (
+                          <Link to={`./project/task/${task.id}`}>
+                            {" "}
+                            {task.name}
+                          </Link>
+                        );
+                      })}
+                    </CardActions>
                   <Button variant="contained" onClick={()=> {addTaskHandler(project)}}>Add task</Button>
                   <ExpandMore
                       expand={expanded}
                       onClick={handleExpandClick}
                       aria-expanded={expanded}
                       aria-label="show more"
-                  >
+                    >
                       <ExpandMoreIcon />
-                  </ExpandMore>
+                    </ExpandMore>
                   </CardActions>
                   <Collapse in={expanded} timeout="auto" unmountOnExit>
-                      <CardContent>
-                        <Typography paragraph>
-                          {project.description}
-                        </Typography>
-                      </CardContent>
+                    <CardContent>
+                      <Typography paragraph>{project.description}</Typography>
+                    </CardContent>
                   </Collapse>
-              </Card>
-          </div>
-       );
+                </Card>
+              </div>
+            );
+          })}
+        </div>
+        <TasksList />
+      </>
+    );
 }
