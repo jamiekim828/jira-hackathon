@@ -77,17 +77,6 @@ export default function SideBar() {
               >
                 Realease
               </Link>
-              <Link
-                to='/'
-                className='nav-logo'
-                style={{
-                  textDecoration: 'none',
-                  color: 'white',
-                  position: 'relative',
-                }}
-              >
-                Components
-              </Link>
             </div>
           </div>
         </nav>
