@@ -3,9 +3,13 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 // image file
 import image from '../assets/background.jpg.webp';
-import { AppDispatch, RootState } from '../redux/store';
-import { fetchAllUsers, userReducer } from '../redux/userReducer';
-import { UserType } from '../types/UserType';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../hooks/reduxHook';
+import { useAppSelector } from '../hooks/reduxHook';
+import { fetchAllUsers } from '../redux/userReducer';
+import { addUser } from '../redux/userReducer';
+
+import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
   fullName: string;
@@ -39,12 +43,9 @@ export default function Register() {
     dispatch(fetchAllUsers());
   }, [dispatch]);
 
+  const navigate = useNavigate();
   const handleRegister = (newUser: Inputs) => {
-    const index = users.findIndex((user) => user.email === newUser.email);
-    console.log(index);
-    // if (index === -1) {
-    //   dispatch(userReducer.addUser(newUser));
-    // }
+    navigate('/login');
   };
 
   return (
@@ -139,7 +140,9 @@ export default function Register() {
               placeholder='Phone'
             />
 
-            <button className='register-btn'>Register</button>
+            <button className='register-btn' onClick={() => handleRegister()}>
+              Register
+            </button>
           </form>
         </div>
       </div>
