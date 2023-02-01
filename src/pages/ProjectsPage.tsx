@@ -111,7 +111,7 @@ const projectsList: Project[] = [
 
 export default function ProjectsPage() {
   return (
-    <Box width="100%" height="100%" padding="1rem">
+    <Box width="auto" height="100%" padding="1rem">
       <Box
         style={{
           minWidth: "100%",

@@ -9,6 +9,7 @@ import { ProjectType } from "../types/ProjectType";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import Button from "@mui/material/Button";
+import TasksList from "./TasksList";
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -36,40 +37,50 @@ export default function ProjectDetail(){
 
     }
     return (
+      <>
         <div>
-            {projectDetail.map((project)=>{
-              return <div>
-                <Card sx={{ mxWidth: 345}}>
+          {projectDetail.map((project) => {
+            return (
+              <div>
+                <Card sx={{ mxWidth: 345 }}>
                   <CardHeader
-                      title={project.name}
-                      subheader={project.creator}
+                    title={project.name}
+                    subheader={project.creator}
                   />
                   <CardActions>
-                  <CardActions>
-                    {project.tasks.map((task)=>{
-                      return <Link to={`./project/task/${task.id}`}> {task.name}</Link>
-                    })}
-                  </CardActions> 
-                  <Button variant="contained" onClick={addTaskHandler}>Add task</Button>
-                  <ExpandMore
+                    <CardActions>
+                      {project.tasks.map((task) => {
+                        return (
+                          <Link to={`./project/task/${task.id}`}>
+                            {" "}
+                            {task.name}
+                          </Link>
+                        );
+                      })}
+                    </CardActions>
+                    <Button variant="contained" onClick={addTaskHandler}>
+                      Add task
+                    </Button>
+                    <ExpandMore
                       expand={expanded}
                       onClick={handleExpandClick}
                       aria-expanded={expanded}
                       aria-label="show more"
-                  >
+                    >
                       <ExpandMoreIcon />
-                  </ExpandMore>
+                    </ExpandMore>
                   </CardActions>
                   <Collapse in={expanded} timeout="auto" unmountOnExit>
-                      <CardContent>
-                        <Typography paragraph>
-                          {project.description}
-                        </Typography>
-                      </CardContent>
+                    <CardContent>
+                      <Typography paragraph>{project.description}</Typography>
+                    </CardContent>
                   </Collapse>
-              </Card>
-          </div>
-        })}
+                </Card>
+              </div>
+            );
+          })}
         </div>
-       );
+        <TasksList />
+      </>
+    );
 }
