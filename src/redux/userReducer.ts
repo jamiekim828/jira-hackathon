@@ -1,15 +1,15 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
-import { ProjectType } from "../types/ProjectType";
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import axios, { AxiosError } from 'axios';
+import { ProjectType } from '../types/ProjectType';
 
-import { UserType } from "../types/UserType";
+import { UserType } from '../types/UserType';
 
 const initialState: UserType[] = [];
 
-export const fetchAllUsers = createAsyncThunk("fetchAllUsers", async () => {
+export const fetchAllUsers = createAsyncThunk('fetchAllUsers', async () => {
   try {
     const users = await axios.get(
-      "https://63d801935dbd723244319be0.mockapi.io/api/v1/users"
+      'https://63d801935dbd723244319be0.mockapi.io/api/v1/users'
     );
     const data = users.data;
     console.log(data);
@@ -21,25 +21,25 @@ export const fetchAllUsers = createAsyncThunk("fetchAllUsers", async () => {
 });
 
 const UserSlice = createSlice({
-  name: "UserSlice",
+  name: 'UserSlice',
   initialState,
   reducers: {
-
+    addUser: (state: UserType[], action: any) => {
+      state.push(action.payload)
+    },
   },
   extraReducers: (build) => {
-    build.
-    addCase(
+    build.addCase(
       fetchAllUsers.fulfilled,
       (state, action: PayloadAction<UserType[] | AxiosError>) => {
-        if (action.payload && "message" in action.payload) {
+        if (action.payload && 'message' in action.payload) {
           return state;
         } else if (!action.payload) {
           return state;
         }
         return action.payload;
       }
-    )
-
+    );
   },
 });
 

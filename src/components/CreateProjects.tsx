@@ -9,14 +9,12 @@ import Button from '@mui/material/Button';
 import { AppDispatch, RootState } from '../redux/store';
 import { fetchAllUsers } from '../redux/userReducer';
 import Dropdown from './Dropdown';
-import { projectReducer } from '../redux/projectReducer';
+import { addProject, projectReducer } from '../redux/projectReducer';
 import { useNavigate } from 'react-router-dom';
 
 type NewProject = {
-  id: number;
-  projectName: string;
-  creator: string | null;
-  task: string[];
+  title: string;
+  members: string | null;
   description: string;
 };
 export default function CreateProjects() {
@@ -39,23 +37,20 @@ export default function CreateProjects() {
   }, [dispatch]);
 
   const [newProject, setNewProject] = useState<NewProject>({
-    id: 1,
-    projectName: '',
-    creator: '',
-    task: [],
+    title: '',
+    members: '',
     description: '',
   });
 
   const navigate = useNavigate();
   const addHandler = () => {
     const updatedValue = {
-      id: 1,
-      projectName: projectName,
-      creator: assignedUser,
-      task: [],
+      title: projectName,
+      members: assignedUser,
       description: description,
     };
     setNewProject(updatedValue);
+    dispatch(addProject(newProject));
     navigate('/projects');
   };
 
