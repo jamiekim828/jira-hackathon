@@ -28,6 +28,7 @@ export default function Register() {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const navigate = useNavigate();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const index = users.findIndex((user) => user.email === data.email);
     if (index === -1) {
@@ -42,11 +43,6 @@ export default function Register() {
   useEffect(() => {
     dispatch(fetchAllUsers());
   }, [dispatch]);
-
-  const navigate = useNavigate();
-  const handleRegister = (newUser: Inputs) => {
-    navigate('/login');
-  };
 
   return (
     <section>
@@ -140,7 +136,7 @@ export default function Register() {
               placeholder='Phone'
             />
 
-            <button className='register-btn' onClick={() => handleRegister()}>
+            <button className='register-btn' onClick={() => navigate('/login')}>
               Register
             </button>
           </form>
