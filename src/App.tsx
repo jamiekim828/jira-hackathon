@@ -10,6 +10,9 @@ import ProjectsList from './components/ProjectsList';
 import Login from './pages/LogIn';
 import SideBar from './components/SideBar';
 
+// projects={[]}
+// sorry I removed this error for deploy after deploy link is build will add it again
+
 function App() {
   return (
     <div className='App'>
@@ -17,7 +20,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />}></Route>
         <Route path='/login' element={<Login />}></Route>
-        <Route path='/projects' element={<ProjectsList projects={[]} />}></Route>
+
+        <Route path='/projects' element={<ProjectsList />}></Route>
         <Route path='/projects/:projectId' element={<ProjectDetail />}></Route>
         <Route path='/create' element={<CreateProjectsPage />}></Route>
       </Routes>
