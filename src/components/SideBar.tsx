@@ -56,7 +56,7 @@ export default function SideBar() {
                 Add Project
               </Link>
               <Link
-                to='/'
+                to='/users'
                 className='nav-logo'
                 style={{
                   textDecoration: 'none',
