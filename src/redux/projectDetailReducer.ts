@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
 import { AppDispatch } from "./store";
 import { ProjectType } from "../types/ProjectType";
 

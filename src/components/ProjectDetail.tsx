@@ -20,10 +20,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import Button from '@mui/material/Button';
 
-import TasksList from './TasksList';
-
 import fetchOneProject from '../redux/projectDetailReducer';
 import { AppDispatch } from '../redux/store';
+import CreateTask from './CreateTask';
 
 type Params = {
   projectId: string;
@@ -51,106 +50,31 @@ export default function ProjectDetail() {
 
   const dispatch = useDispatch<AppDispatch>();
   const [expanded, setExpanded] = useState(false);
-  const [id, setId] = useState(0);
-  const [name, setName] = useState('');
-  const [creator, setCreator] = useState('');
-  const [description, setDescription] = useState('');
+
   const { projectId } = useParams<Params>();
   useEffect(() => {
     dispatch(fetchOneProject(projectId));
   }, [dispatch, projectId]);
 
-  const temp = {
-    id: id,
-    name: name,
-    creator: creator,
-    description: description,
-  };
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  function idHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    setId(Number(event.target.value));
-  }
-  function nameHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    setName(event.target.value);
-  }
-  function creatorHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    setCreator(event.target.value);
-  }
-  function descriptionHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    setDescription(event.target.value);
-  }
-  function saveHandler(project: ProjectType) {
-    project.task.push(temp);
-  }
+ 
   function addTaskHandler(project: ProjectType) {
-    return (
-      <Box
-        component='form'
-        sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete='off'
-      >
-        <div>
-          <TextField
-            required
-            id='outlined-number'
-            label='Task Id'
-            type='number'
-            InputLabelProps={{
-              shrink: true,
-            }}
-            onChange={idHandler}
-          />
-          <TextField
-            required
-            id='outlined-required'
-            label='enter name of the task'
-            defaultValue=''
-            onChange={nameHandler}
-          />
-          <TextField
-            required
-            id='outlined-required'
-            label='enter name of the creator'
-            defaultValue=''
-            onChange={creatorHandler}
-          />
-          <TextField
-            id='outlined-multiline-flexible'
-            label='write here description of the project'
-            multiline
-            maxRows={5}
-            onChange={descriptionHandler}
-          />
-          <Button
-            variant='contained'
-            onClick={() => {
-              saveHandler(project);
-            }}
-          >
-            Save
-          </Button>
-        </div>
-      </Box>
-    );
+    return <CreateTask/>
   }
   return (
-    <>
-      <div>
-        {/* {projectDetail.map((project) => {
-          return (
             <div>
               <Card sx={{ mxWidth: 345 }}>
                 <CardHeader
                   title={project.projectName}
-                  subheader={project.creator}
                 />
                 <CardContent>
                   <Typography>
+                    Created by {project.creator}
+                  </Typography>
+                  <Typography>
+                    Tasks of the Project
                     {project.task.map((task) => {
                       return (
                         <ul>
@@ -163,16 +87,6 @@ export default function ProjectDetail() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <CardActions>
-                    {project.tasks.map((task) => {
-                      return (
-                        <Link to={`./project/task/${task.id}`}>
-                          {' '}
-                          {task.name}
-                        </Link>
-                      );
-                    })}
-                  </CardActions>
                   <Button
                     variant='contained'
                     onClick={() => {
@@ -196,11 +110,6 @@ export default function ProjectDetail() {
                   </CardContent>
                 </Collapse>
               </Card>
-            </div>
-          );
-        })} */}
-      </div>
-      <TasksList />
-    </>
+            </div>      
   );
 }
