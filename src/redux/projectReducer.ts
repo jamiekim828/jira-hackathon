@@ -1,16 +1,16 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import axios, { AxiosError } from 'axios';
 
-import { ProjectType } from "../types/ProjectType";
+import { ProjectType } from '../types/ProjectType';
 
 const initialState: ProjectType[] = [];
 
 export const fetchAllProjects = createAsyncThunk(
-  "fetchAllProjects",
+  'fetchAllProjects',
   async () => {
     try {
       const projects = await axios.get(
-        "https://63d7d9b1afbba6b7c945d817.mockapi.io/api/v1/test1"
+        'https://63d7d9b1afbba6b7c945d817.mockapi.io/api/v1/test1'
       );
       const data = projects.data;
       console.log(data);
@@ -44,8 +44,8 @@ export const addProject = createAsyncThunk(
 );
 
 export const deleteProject = createAsyncThunk(
-  "deleteProject",
-  async (projectId: any) => {
+  'deleteProject',
+  async (projectId: number) => {
     try {
       console.log(projectId);
       const response = await axios.delete(
@@ -61,7 +61,7 @@ export const deleteProject = createAsyncThunk(
 );
 
 export const editProject = createAsyncThunk(
-  "editProject",
+  'editProject',
   async (project: Partial<ProjectType>) => {
     try {
       const response = await axios.put(
@@ -81,7 +81,7 @@ export const editProject = createAsyncThunk(
 );
 
 const ProjectSlice = createSlice({
-  name: "ProjectSlice",
+  name: 'ProjectSlice',
   initialState,
   reducers: {
     deleteItem: (state: ProjectType[], action: any) => {
@@ -95,7 +95,7 @@ const ProjectSlice = createSlice({
       .addCase(
         fetchAllProjects.fulfilled,
         (state, action: PayloadAction<ProjectType[] | AxiosError>) => {
-          if (action.payload && "message" in action.payload) {
+          if (action.payload && 'message' in action.payload) {
             return state;
           } else if (!action.payload) {
             return state;
