@@ -3,8 +3,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 // image file
 import image from "../assets/background.jpg.webp";
-
-
+import { useEffect } from "react";
+import { useAppDispatch } from "../hooks/reduxHook";
+import { useAppSelector } from "../hooks/reduxHook";
+import { fetchAllUsers } from "../redux/userReducer";
+import { addUser } from "../redux/userReducer";
 
 type Inputs = {
   fullName: string;
@@ -23,9 +26,27 @@ export default function Register() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const index = users.findIndex((user) => user.email === data.email);
+    if (index === -1) {
+      dispatch(addUser(data));
+    }
+  };
 
   console.log(watch("email"));
+  const users = useAppSelector((user) => user.userReducer);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllUsers());
+  }, [dispatch]);
+
+  // const handleRegister = (newUser: any) => {
+  //   const index = users.findIndex((user) => user.email === newUser.email);
+  //   if (index === -1) {
+  //     dispatch(addUser(newUser));
+  //   }
+  // };
 
   return (
     <section>

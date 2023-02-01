@@ -26,7 +26,7 @@ export const addProject = createAsyncThunk(
   "addProject",
   async (project: any) => {
     try {
-      const response = await axios.put(
+      const response = await axios.post(
         `https://63d7d9b1afbba6b7c945d817.mockapi.io/api/v1/test1`,
         {
           title: project.projectName,
