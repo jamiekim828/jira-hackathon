@@ -23,15 +23,15 @@ export const fetchAllProjects = createAsyncThunk(
 );
 
 export const addProject = createAsyncThunk(
-  "addProject",
+  'addProject',
   async (project: any) => {
     try {
       const response = await axios.post(
         `https://63d7d9b1afbba6b7c945d817.mockapi.io/api/v1/test1`,
         {
           title: project.projectName,
-          members: [project.members],
-          description: project.description
+          members: project.members,
+          description: project.description,
         }
       );
       const data = response.data;

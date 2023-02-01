@@ -8,7 +8,11 @@ type PropType = {
   setAssignedUser: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-export default function Dropdown({ users, setAssignedUser }: PropType) {
+export default function Dropdown({
+  users,
+
+  setAssignedUser,
+}: PropType) {
   const userName = users.map((user) => user.name);
   const assignUserHandler = (e: React.SyntheticEvent, value: string | null) => {
     setAssignedUser(value);

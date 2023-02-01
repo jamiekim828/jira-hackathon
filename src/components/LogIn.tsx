@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 // MUI
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import { useNavigate } from 'react-router-dom';
 
 // type
 type Inputs = {
@@ -16,7 +17,13 @@ export default function LogIn() {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const navigate = useNavigate();
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
+    if (data.email && data.password) {
+      navigate('/projects');
+    }
+  };
 
   console.log(watch('email'));
 
