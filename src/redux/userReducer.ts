@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
-import { ProjectType } from "../types/ProjectType";
 
 import { UserType } from "../types/UserType";
 
