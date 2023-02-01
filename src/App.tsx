@@ -1,23 +1,25 @@
-import { Routes, Route } from "react-router-dom";
-import "./App.css";
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
 
-import CreateProjects from "./pages/CreateProjects";
-import ProjectDetail from "./components/ProjectDetail";
-import Main from "./pages/Main";
-import ProjectsPage from "./pages/ProjectsPage";
-import Login from "./pages/LogIn";
-import SideBar from "./components/SideBar";
+import CreateProjectsPage from './pages/CreateProjectPage';
+import ProjectDetail from './components/ProjectDetail';
+import Main from './pages/Main';
+// import ProjectsList from './pages/ProjectsList';
+import ProjectsList from './components/ProjectsList';
+
+import Login from './pages/LogIn';
+import SideBar from './components/SideBar';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <SideBar />
       <Routes>
-        <Route path="/" element={<Main />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/projects" element={<ProjectsPage />}></Route>
-        <Route path="/projects/:id" element={<ProjectDetail />}></Route>
-        <Route path="/create" element={<CreateProjects />}></Route>
+        <Route path='/' element={<Main />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/projects' element={<ProjectsList projects={[]} />}></Route>
+        <Route path='/projects/:projectId' element={<ProjectDetail />}></Route>
+        <Route path='/create' element={<CreateProjectsPage />}></Route>
       </Routes>
     </div>
   );

@@ -1,16 +1,16 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import axios, { AxiosError } from 'axios';
 
-import { ProjectType } from "../types/ProjectType";
+import { ProjectType } from '../types/ProjectType';
 
 const initialState: ProjectType[] = [];
 
 export const fetchAllProjects = createAsyncThunk(
-  "fetchAllProjects",
+  'fetchAllProjects',
   async () => {
     try {
       const projects = await axios.get(
-        "https://63d7d9b1afbba6b7c945d817.mockapi.io/api/v1/test1"
+        'https://63d7d9b1afbba6b7c945d817.mockapi.io/api/v1/test1'
       );
       const data = projects.data;
       console.log(data);
@@ -22,10 +22,32 @@ export const fetchAllProjects = createAsyncThunk(
   }
 );
 
+export const addProject = createAsyncThunk(
+  "addProject",
+  async (project: any) => {
+    try {
+      const response = await axios.put(
+        `https://63d7d9b1afbba6b7c945d817.mockapi.io/api/v1/test1`,
+        {
+          title: project.projectName,
+          members: [project.members],
+          description: project.description
+        }
+      );
+      const data = response.data;
+      return data;
+    } catch (err) {
+      const error = err as AxiosError;
+      return error;
+    }
+  }
+);
+
 export const deleteProject = createAsyncThunk(
-  "deleteProject",
+  'deleteProject',
   async (projectId: number) => {
     try {
+      console.log(projectId);
       const response = await axios.delete(
         `https://63d7d9b1afbba6b7c945d817.mockapi.io/api/v1/test1/${projectId}`
       );
@@ -39,13 +61,13 @@ export const deleteProject = createAsyncThunk(
 );
 
 export const editProject = createAsyncThunk(
-  "editProject",
+  'editProject',
   async (project: Partial<ProjectType>) => {
     try {
       const response = await axios.put(
         `https://63d7d9b1afbba6b7c945d817.mockapi.io/api/v1/test1/${project.id}`,
         {
-          title: project.name,
+          title: project.projectName,
           description: project.description,
         }
       );
@@ -59,10 +81,10 @@ export const editProject = createAsyncThunk(
 );
 
 const ProjectSlice = createSlice({
-  name: "ProjectSlice",
+  name: 'ProjectSlice',
   initialState,
   reducers: {
-    delete: (state: ProjectType[], action: PayloadAction<number>) => {
+    deleteItem: (state: ProjectType[], action: any) => {
       if (action.payload) {
         return state.filter((item) => item.id !== action.payload);
       }
@@ -73,7 +95,7 @@ const ProjectSlice = createSlice({
       .addCase(
         fetchAllProjects.fulfilled,
         (state, action: PayloadAction<ProjectType[] | AxiosError>) => {
-          if (action.payload && "message" in action.payload) {
+          if (action.payload && 'message' in action.payload) {
             return state;
           } else if (!action.payload) {
             return state;
@@ -99,3 +121,4 @@ const ProjectSlice = createSlice({
 // and get the project list
 
 export const projectReducer = ProjectSlice.reducer;
+export const { deleteItem } = ProjectSlice.actions;

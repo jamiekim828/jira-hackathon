@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { projectReducer } from "./projectReducer";
 import { userReducer } from "./userReducer";
-
+import { detailReducer } from "./projectDetailReducer";
 const store = configureStore({
-  reducer: { projectReducer, userReducer },
+  reducer: { projectReducer, userReducer, detailReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
 });

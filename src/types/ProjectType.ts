@@ -1,9 +1,9 @@
 import { TaskType } from "./TaskType"
 export interface ProjectType {
     id: number
-    name: string
+    projectName: string
     creator: string
-    members: string[]
-    tasks: TaskType[]
+    //members: string[]
+    task: TaskType[]
     description: string
 }

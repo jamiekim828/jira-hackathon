@@ -2,8 +2,17 @@ import { Box, Divider, Typography, IconButton } from "@mui/material";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Grid from "@mui/material/Grid";
-import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+
+import { useAppSelector } from "../hooks/reduxHook";
+import { useAppDispatch } from "../hooks/reduxHook";
+import { fetchAllProjects } from "../redux/projectReducer";
+import { deleteProject } from "../redux/projectReducer";
+import { deleteItem } from "../redux/projectReducer";
+
+import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
 import { Project } from "../types/ProjectTypes";
 
@@ -111,6 +120,11 @@ const projectsList: Project[] = [
 ];
 
 const ProjectItem = ({ project }: any) => {
+  const dispatch = useAppDispatch();
+  const deleteFromProject = () => {
+    dispatch(deleteProject(project.id));
+    dispatch(deleteItem(project.id));
+  };
   return (
     <Box
       style={{
@@ -187,6 +201,13 @@ export default function ProjectsList() {
     projectsList.filter((project) => project.status[0] === "inProgress") || [];
   const finishedProjects =
     projectsList.filter((project) => project.status[0] === "finished") || [];
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllProjects());
+  }, []);
+  const projectList = useAppSelector((item) => item.projectReducer);
 
   return (
     <Box
